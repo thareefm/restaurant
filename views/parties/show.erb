@@ -1,0 +1,9 @@
+<h2><%= @parties.table_number %></h2>
+
+
+<a href="/parties/<%= @parties.id %>/edit"> Edit </a>
+
+<form action="/parties/<%= @parties.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>

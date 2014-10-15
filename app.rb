@@ -80,7 +80,24 @@ post '/parties' do
 	redirect '/parties'
 end
 
+# Display a form to edit a party
+get '/parties/:id/edit' do
+	@parties = Party.find(params[:id])
+	erb :'parties/edit'
+end
 
+# Updates a food item
+patch '/parties/:id' do
+	@parties = Party.find(params[:id])
+	@parties.update(params[:parties])
+	redirect "/parties/#{@parties.id}"
+end
 
+#Display a single party and a list of all the orders
+get '/parties/:id' do
+	@parties = Party.find(params[:id])
+	# @parties = @foods.parties
+	erb :'parties/show'
+end
 
 
