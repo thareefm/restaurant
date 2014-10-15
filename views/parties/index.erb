@@ -5,13 +5,16 @@
 	<th> Table Number </th>
 	<th> Number of Guests </th>
 	<th> Pay Status </th>
+	<th> Orders </th>
 	<% @parties.each do |party| %>
 	<tr>
 		<td><a href="/parties/<%= party.id %>">
 			<%= party.table_number %></a></td>
 		<td><%= party.number_guests %></td>
-		<td><%= party.pay_status %></td>
-		<td>$<%= party.order_id %></td>                                               
+		<td><%= party.pay_status %></td>                                       
 		<% end %>
 	</tr>
 </table>
+
+<a href="/restaurant">Main Page</a>
+<a href="/foods">Food Section</a>

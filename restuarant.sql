@@ -6,7 +6,7 @@ id SERIAL PRIMARY KEY,
 name varchar(150),
 cuisine_type varchar(100),
 calories integer,
-price integer
+price money
 );
 
 CREATE TABLE parties (

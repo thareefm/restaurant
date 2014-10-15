@@ -1,4 +1,4 @@
-<h2><%= @foods.name %></h2>
+<h2>Displaying Food Item: <%= @foods.name %></h2>
 <h2>Price: $<%= @foods.price %></h2>
 
 <a href="/foods/<%= @foods.id %>/edit"> Edit </a>
@@ -7,3 +7,6 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form>
+
+<a href="/restaurant">Main Page</a>
+<a href="/parties">Party Section</a>

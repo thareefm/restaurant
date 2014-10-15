@@ -1,7 +1,13 @@
+<h2>Editing Party</h2>
+
 <form action="/parties/<%= @parties.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <input type="text" name="parties[table_number]" value="<%= @parties.table_number%>"/>
-	<input type="text" name="parties[number_guests]" value="<%= @tables.number_guests %>"/>
-	<input type="text" name="tables[pay_status]" value ="<%= @tables.pay_status %>"/>
+  <input type="text" name="parties[table_number]" value="<%= @parties.table_number%>"/> Table Number <br>
+	<input type="text" name="parties[number_guests]" value="<%= @parties.number_guests %>"/> Number of Guests <br>
+  <input type="radio" name="parties[pay_status]" /> Check if Paid<br>
 	<input type="submit"/>
 </form>
+
+<a href="/restaurant">Main Page</a>
+<a href="/foods">Food Section</a>
+<a href="/parties">Take Me Back</a>

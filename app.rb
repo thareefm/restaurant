@@ -1,4 +1,4 @@
-require 'bundler'
+require 'bundler' 
 Bundler.require
 
 ActiveRecord::Base.establish_connection({
@@ -98,6 +98,16 @@ get '/parties/:id' do
 	@parties = Party.find(params[:id])
 	# @parties = @foods.parties
 	erb :'parties/show'
+end
+
+# Deletes a party
+delete '/parties/:id' do
+	Party.delete(params[:id])
+	redirect '/parties'
+end
+
+get '/console' do 
+	binding.pry
 end
 
 
