@@ -1,0 +1,7 @@
+<h2> New Order for Table Number <%= @parties.table_number %> </h2>
+		
+		<select name="order[food_id]">
+			<% @foods.each do |food| %>
+			<option value="<%= food.id %>"><%= food.name %></option>
+			<% end %>
+		</select>

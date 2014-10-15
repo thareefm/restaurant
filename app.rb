@@ -106,9 +106,35 @@ delete '/parties/:id' do
 	redirect '/parties'
 end
 
+# Matt's pry trick
 get '/console' do 
 	binding.pry
 end
 
 #-------------------
+
+# index: Display a list of all current orders
+get '/orders' do
+	@orders = Order.all
+	erb :'orders/index'
+end
+
+# Display a form for a new order
+get '/parties/:id/order/new' do
+	@parties = Party.find(params[:id])
+	@foods = Food.all
+	erb :'orders/new'
+end
+
+# Creates a new Order
+post '/parties/:id/order' do
+end
+
+
+
+
+
+
+
+
 

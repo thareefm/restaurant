@@ -1,0 +1,21 @@
+<h1> List of Orders </h1>
+
+<a href="/parties/index"> Select Party To Make New Order </a>
+
+<table>
+	<th> Order ID </th>
+	<th> Table Number </th>
+	<th> Food Type </th>
+	<th> Payment Status </th>
+	<% @orders.each do |order| %>
+	<tr>
+		<td><%= order.id %></td>
+		<td><%= order.foods.name %></td>
+		<td><%= food.calories %></td>
+		<td>$<%= food.price %></td>                                                      
+		<% end %>
+	</tr>
+</table>
+
+<a href="/restaurants">Main Page</a>
+<a href="/parties">Party Section</a>
