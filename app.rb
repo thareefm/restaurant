@@ -10,8 +10,12 @@ ROOT_PATH = Dir.pwd
 Dir[ROOT_PATH+"/models/*.rb"].each{ |file| require file }
 
 get '/' do
-	redirect '/foods'
+	redirect '/restaurants'
 end	
+
+get '/restaurants' do
+	erb :'index'
+end
 
 
 # index: Display a list of food items available
@@ -55,6 +59,25 @@ end
 delete '/foods/:id' do
 	Food.delete(params[:id])
 	redirect '/foods'
+end
+
+#-------------------
+
+# index: Display a list of parties available
+get '/parties' do
+	@parties = Party.all
+	erb :'/parties/index'
+end
+
+# Display a form for a new party
+get '/parties/new' do
+	erb :'parties/new'
+end
+
+# Creates a new Party
+post '/parties' do
+	Party.create(params[:parties])
+	redirect '/parties'
 end
 
 

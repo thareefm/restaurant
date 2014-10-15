@@ -1,0 +1,17 @@
+<h1> Party List </h1>
+<a href="/parties/new"> New Party ?</a>
+
+<table>
+	<th> Table Number </th>
+	<th> Number of Guests </th>
+	<th> Pay Status </th>
+	<% @parties.each do |party| %>
+	<tr>
+		<td><a href="/parties/<%= party.id %>">
+			<%= party.table_number %></a></td>
+		<td><%= party.number_guests %></td>
+		<td><%= party.pay_status %></td>
+		<td>$<%= party.order_id %></td>                                               
+		<% end %>
+	</tr>
+</table>
