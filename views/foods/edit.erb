@@ -1,0 +1,8 @@
+<form action="/foods/<%= @foods.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="foods[name]" value="<%= @foods.name%>"/>
+	<input type="text" name="foods[cuisine_type]" value="<%= @foods.cuisine_type %>"/>
+	<input type="text" name="foods[calories]" value ="<%= @foods.calories %>"/>
+	<input type="text" name="foods[price]" value = "<%= @foods.price %>"/>
+	<input type="submit"/>
+</form>

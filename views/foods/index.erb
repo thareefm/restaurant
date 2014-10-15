@@ -1,0 +1,18 @@
+<h1> Our Menu </h1>
+<a href="/foods/new"> New Food Item ?</a>
+
+<table>
+	<th> Name</th>
+	<th> Cuisine Type</th>
+	<th> Calories </th>
+	<th> Price </th>
+	<% @foods.each do |food| %>
+	<tr>
+		<td><a href="/foods/<%= food.id %>/edit">
+			<%= food.name %></a></td>
+		<td><%= food.cuisine_type %></td>
+		<td><%= food.calories %></td>
+		<td><%= food.price %></td>                                                               
+		<% end %>
+	</tr>
+</table>
