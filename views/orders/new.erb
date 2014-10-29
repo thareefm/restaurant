@@ -1,7 +1,11 @@
 <h2> New Order for Table Number <%= @parties.table_number %> </h2>
-		
+<h2> Curent Date: <%= DateTime.now %></h2>
+	<form action="/parties/<%= @parties.id %>/orders" method="post"/>
 		<select name="order[food_id]">
 			<% @foods.each do |food| %>
 			<option value="<%= food.id %>"><%= food.name %></option>
 			<% end %>
 		</select>
+		<input type="hidden" name="order[party_id]" value="<%= @parties.id %>">
+		<input type="submit" value="Place Order">
+	</form>

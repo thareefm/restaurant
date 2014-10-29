@@ -1,0 +1,11 @@
+Ruby Burgers by the Kaiser Chef's
+Time: 2014-10-28T21:38:02-04:00
+
+       Table Number: 21       
+Chicken Noodle Soup......12.50
+Subtotal.................12.50
+Tax.......................2.50
+Grand Total..............15.00
+Suggested Gratuity........1.88
+Thank You for Dinning with us
+COME AGAIN

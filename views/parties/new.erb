@@ -1,3 +1,16 @@
+<h2>Create a new Party</h2>
+
+<% if @errors %>
+<div class="errors">
+<h1><%= @errors.count %> <%= @errors.count == 1 ? "ERROR" : "ERRORS" %>.</h1>
+  <ul>
+    <% @errors.each do |error|  %>
+      <li><h2><%= error %></h2></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <a href="/parties"> Take Me Back</a>
 <form action="/parties" method="post"/>
 	<input type="text" name="parties[table_number]" placeholder="Enter Table Number"/>

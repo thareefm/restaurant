@@ -1,12 +1,27 @@
 <h2>Displaying Food Item: <%= @foods.name %></h2>
 <h2>Price: $<%= @foods.price %></h2>
 
-<a href="/foods/<%= @foods.id %>/edit"> Edit </a>
+
+
+<table>
+	<h2> The Following Have Ordered This Item:</h2>
+	<th> Table Number</th>
+	<th> Number of Guests</th>
+	<% @orders.each do |order| %>
+	<tr>
+		<td><%= order.party.try(:table_number) %></td>
+		<td><%= order.party.try(:number_guests) %></td>                                                     
+		<% end %>
+	</tr>
+</table>
+
 
 <form action="/foods/<%= @foods.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form>
+
+<a href="/foods/<%= @foods.id %>/edit"> Edit </a>
 
 <a href="/restaurants">Main Page</a>
 <a href="/parties">Party Section</a>

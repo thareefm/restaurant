@@ -1,20 +1,38 @@
-<h1> Party List </h1>
+<h2> Party List </h2>
 <a href="/parties/new"> New Party ?</a>
 
 <table>
 	<th> Table Number </th>
 	<th> Number of Guests </th>
 	<th> Pay Status </th>
-	<th> Orders Command 1 </th>
-	<th> Orders Command 2 </th>
+	<th>            </th>
+	<th>            </th>
 	<% @parties.each do |party| %>
 	<tr>
-		<td><a href="/parties/<%= party.id %>">
-			<%= party.table_number %></a></td>
+		<td><%= party.table_number %></td>
 		<td><%= party.number_guests %></td>
-		<td><%= party.pay_status %></td>   
-		<td><a href="/parties/<%= party.id %>/order/new"> Place Order </td>  
-		<td><a href="/parties/<%= party.id %>/order/checkout"> Checkout </td>                                   
+		<td><%= party.pay_status
+						if party.pay_status == TRUE
+							"Paid"
+						else 
+							"Unpaid"
+						end %></td>   
+		<td><a href= "<%= party.pay_status
+  									if party.pay_status == TRUE
+  										"/notallowed"
+  									else
+  										"/parties/#{party.id}/orders/new"
+  									end %>"> Place Order </td>  
+		<td></form>
+<form action="/parties/<%= party.id %>/checkout" method="post">
+  <input type="<%= party.pay_status
+  									if party.pay_status == TRUE
+  										"hidden"
+  									else
+  										"submit"
+  									end %>" value="Check Out">
+</form></td>
+		<td><a href="/parties/<%= party.id %>"> Inspect Orders </td>                                   
 		<% end %>
 	</tr>
 </table>

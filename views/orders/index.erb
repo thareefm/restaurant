@@ -1,18 +1,26 @@
-<h1> List of Orders </h1>
+<h2> List of Orders </h2>
 
-<a href="/parties/index"> Select Party To Make New Order </a>
+<a href="/parties"> Select Party To Make New Order </a>
 
 <table>
 	<th> Order ID </th>
 	<th> Table Number </th>
 	<th> Food Type </th>
+	<th> Payment </th>
 	<th> Payment Status </th>
 	<% @orders.each do |order| %>
 	<tr>
 		<td><%= order.id %></td>
-		<td><%= order.foods.name %></td>
-		<td><%= food.calories %></td>
-		<td>$<%= food.price %></td>                                                      
+		<td><%= order.food.name %></td>
+		<td><%= order.food.calories %></td>
+		<td>$<%= order.food.price %></td> 
+		<td><%= 
+		order.party.try(:pay_status)
+						if order.party.try(:pay_status) == TRUE
+							"Paid"
+						else 
+							"Unpaid"
+						end %></td>                                                     
 		<% end %>
 	</tr>
 </table>

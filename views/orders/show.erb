@@ -1,0 +1,21 @@
+<h2>List of Orders for Table Number: <%=@parties.table_number %></h2>
+
+<table>
+	<th> Name</th>
+	<th> Cuisine Type</th>
+	<th> Calories </th>
+	<th> Price </th>
+	<% @parties.orders.each do |order| %>
+	<tr>
+		<td><%= order.food.name %></td>
+		<td><%= order.food.cuisine_type %></td>   
+		<td><%= order.food.calories %></td> 
+		<td>$<%= order.food.price_to_float %></td>                                                           
+		<% end %>
+	</tr>
+</table>
+
+
+<a href="/restaurants">Main Page</a>
+<a href="/foods">Food Section</a>
+<a href="/parties">Take Me Back</a>

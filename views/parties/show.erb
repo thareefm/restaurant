@@ -1,13 +1,49 @@
-<h2><%= @parties.table_number %></h2>
+<h2>Table Number: <%= @parties.table_number %></h2>
 
 
-<a href="/parties/<%= @parties.id %>/edit"> Edit </a>
 
-<form action="/parties/<%= @parties.id %>" method="post">
+<a href="/parties/<%= @parties.id %>/edit"> Edit This Party </a>
+
+<table>
+	<th> Name</th>
+	<th> Cuisine Type</th>
+	<th> Calories </th>
+	<th> Price </th>
+	<% @parties.orders.each do |order| %>
+	<tr>
+		<td><%= order.food.name %></td>
+		<td><%= order.food.cuisine_type %></td>   
+		<td><%= order.food.calories %></td> 
+		<td>$<%= order.food.price %></td> 
+		<td><form action="/parties/<%= @parties.id %>/orders/<%= order.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
+  <input type="submit" value="Delete Order">
+</form></tr><% end %> 
+</table>
+<table>
+	<th> Total Price</th>
+	<th> Total Tax (20%) </th>
+	<th> Recommended Gratuity (15%) </th>
+	<th> Total w/o Gratuity</th>
+	<tr>
+		<td> $<%= @total_price %> </td>
+		<td> $<%= @tax %></td>
+		<td> $<%= @gratuity %></td>
+		<td> $<%= @total_price + @tax %></td>
+	</tr>
+</table>
 
-<a href="/restaurants">Main Page</a>
-<a href="/foods">Food Section</a>
-<a href="/parties">Take Me Back</a>
+<div class="buttons">
+<ul>
+<li><a href="/parties/<%= @parties.id %>/orders/new">New Order</a></li>
+<li><a href="/restaurants">Main Page</a></li>
+<li><a href="/foods">Food Section</a></li>
+<li><a href="/parties">Take Me Back</a></li>
+<li><form action="/parties/<%= @parties.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Party">
+</form></li>
+<li><form action="/parties/<%= @parties.id %>/checkout" method="post">
+  <input type="submit" value="Check Out">
+</form></li></div>
+

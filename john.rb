@@ -32,7 +32,13 @@ end
 # Creates a new food item
 post '/foods' do
 	Food.create(params[:foods])
-	redirect '/foods'
+	new_food = Food.create(params[:foods])
+	if new_food.valid?
+		redirect "/foods/#{new_food.id}"
+	else
+		@errors = new_food.errors.full_messages
+	erb  :'foods/new'
+	end
 end
 
 # Display a form to edit a food item
@@ -51,13 +57,14 @@ end
 #Display a single food item and a list of all the parties that included it
 get '/foods/:id' do
 	@foods = Food.find(params[:id])
+	@orders = Order.where(food_id: @foods.id) 
 	# @parties = @foods.parties
 	erb :'foods/show'
 end
 
 # Deletes a food item
 delete '/foods/:id' do
-	Food.delete(params[:id])
+	Food.destroy(params[:id])
 	redirect '/foods'
 end
 
@@ -76,8 +83,13 @@ end
 
 # Creates a new Party
 post '/parties' do
-	Party.create(params[:parties])
-	redirect '/parties'
+	new_party = Party.create(params[:parties])
+	if new_party.valid?
+		redirect "/parties/#{new_party.id}"
+	else
+		@errors = new_party.errors.full_messages
+		erb  :'parties/new'
+	end
 end
 
 # Display a form to edit a party
@@ -96,13 +108,17 @@ end
 #Display a single party and a list of all the orders
 get '/parties/:id' do
 	@parties = Party.find(params[:id])
-	# @parties = @foods.parties
+	@total_price = @parties.orders.inject(0.0) do |acc, order|		
+		acc + order.food.price_to_float 
+	end
+	@tax = (@total_price*0.2).round(2)
+	@gratuity = (@total_price*0.15).round(2)
 	erb :'parties/show'
 end
 
 # Deletes a party
 delete '/parties/:id' do
-	Party.delete(params[:id])
+	Party.destroy(params[:id])
 	redirect '/parties'
 end
 
@@ -115,20 +131,68 @@ end
 
 # index: Display a list of all current orders
 get '/orders' do
+	@foods = Food.all
 	@orders = Order.all
 	erb :'orders/index'
 end
 
 # Display a form for a new order
-get '/parties/:id/order/new' do
+get '/parties/:id/orders/new' do
 	@parties = Party.find(params[:id])
 	@foods = Food.all
 	erb :'orders/new'
 end
 
 # Creates a new Order
-post '/parties/:id/order' do
+post '/parties/:id/orders' do
+	Order.create(params[:order])
+	redirect "/parties/#{params[:id]}/orders"
 end
+
+
+# Deletes a party
+delete '/parties/:party_id/orders/:id' do
+	Party.find(params[:party_id])
+	Order.destroy(params[:id])
+	redirect "/parties/#{params[:party_id]}"
+end
+
+# Redirects back to 'inspect order' page after creating new order
+get '/parties/:id/orders' do
+	Party.find(params[:id])
+	redirect "/parties/#{params[:id]}"
+end
+
+#-------------------
+
+get '/parties/:id/checkout' do
+@parties = Party.find(params[:id])
+@total_price = @parties.orders.inject(0.0) do |acc, order|		
+		acc + order.food.price_to_float 
+	end
+	@tax = (@total_price*0.2).round(2)
+	@gratuity = (@total_price*0.15).round(2)
+
+end
+
+post '/parties/:id/checkout' do
+	@parties = Party.find(params[:id])
+	@parties.update(pay_status: true)
+	@foods = @parties.foods
+	 receipt = Receipt.new(@foods, @parties)
+  File.open('receipt.txt', 'w+') do |file|
+    file << receipt.to_s
+  end
+  attachment('receipt.txt')
+  File.read('receipt.txt')
+end
+
+get '/notallowed' do
+	erb :notallowed
+end
+
+
+
 
 
 

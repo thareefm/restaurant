@@ -1,5 +1,14 @@
 <h2>New Food Item Form</h2>
-
+<% if @errors %>
+<div class="errors">
+<h1><%= @errors.count %> <%= @errors.count == 1 ? "ERROR" : "ERRORS" %>.</h1>
+  <ul>
+    <% @errors.each do |error|  %>
+      <li><h2><%= error %></h2></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <a href="/foods"> Take Me Back</a>
 
 </style>
