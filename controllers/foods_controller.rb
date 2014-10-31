@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
 
+
 # index: Display a list of food items available
 get '/' do
 	@foods = Food.all
@@ -16,7 +17,7 @@ post '/' do
 	Food.create(params[:foods])
 	new_food = Food.create(params[:foods])
 	if new_food.valid?
-		redirect "/#{new_food.id}"
+		redirect "/foods/#{new_food.id}"
 	else
 		@errors = new_food.errors.full_messages
 	erb  :'foods/new'
@@ -33,7 +34,7 @@ end
 patch '/:id' do
 	@foods = Food.find(params[:id])
 	@foods.update(params[:foods])
-	redirect "/#{@foods.id}"
+	redirect "/foods/#{@foods.id}"
 end
 
 #Display a single food item and a list of all the parties that included it
@@ -47,7 +48,6 @@ end
 # Deletes a food item
 delete '/:id' do
 	Food.destroy(params[:id])
-	redirect '/'
+	redirect '/foods'
 end
-
 end

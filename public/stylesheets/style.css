@@ -2,6 +2,22 @@ body {
 font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 background-color: rgb(102, 153, 0);
 color: rgb(102, 0, 0);
+padding: 0px;
+margin: 0px;
+}
+
+.titlediv {
+     -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 0px;
+    border: solid 8px rgba(14, 28, 140, 0.2);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(14, 28, 140, 0.6), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(14, 28, 140, 0.6), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(14, 28, 140, 0.6), 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgba(14, 28, 140, 1);
+    margin-top: 10px;
+    width: 100%;
 }
 
 h1 {
@@ -26,7 +42,7 @@ h1, h2, h3 {
 	font-size: 4em;
 }
 
-a {
+a  {
  -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -39,7 +55,37 @@ a {
     color: #FFF;
     padding: 1px 2px;
     text-decoration: none;
+    margin: 10px;
   }
+
+ input[type=submit] {
+ -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: solid 1px #3333CC;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 #6666FF, 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 #6666FF, 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 #6666FF, 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #6600FF;
+    color: #FFF;
+    padding: 2px 3px;
+    text-decoration: none;
+    font-size: 0.85em;
+    margin: 10px;
+  }
+
+input[type="text"] {
+  padding: 10px;
+  margin: 10px;
+  border: solid 3px #c9c9c9;
+  box-shadow: inset 0 0 0 1px #707070;
+  transition: box-shadow 0.4s, border 0.6s;
+}
+
+input[type="text"].focus {
+  border: solid 3px #969696;
+}
 
 
 
@@ -76,6 +122,44 @@ div {
 }
 
 li {
+    display: inline;
     padding: 2px;
     margin: 4px;
+}
+
+ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    padding: 2px;
+    margin: 4px;
+}
+
+.food  {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: solid 1px rgb(102, 0, 0);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgba(247, 2, 2, 0.25);
+    color: #FFF;
+    padding: 1px 2px;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.food:hover {
+    background-color: rgba(247, 2, 2);
+    color: #6600FF;
+}
+
+.total {
+    background: rgba(247, 2, 2, 0.25);
 }

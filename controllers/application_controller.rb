@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
 	set :views, File.expand_path('../../views', __FILE__)
 	set :public, File.expand_path('../../public', __FILE__)
 
-	enable :sessions, :method_overide
+	enable :sessions, :method_override
 
 	get '/' do
 		redirect '/restaurants'
